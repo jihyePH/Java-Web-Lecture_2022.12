@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <script>
+    	function validate() {
+    	let formReg = document.formReg;
+        let uid = document.uid.value;
+        let pwd = document.pwd.value;
+        let pwd2 = document.pwd2.value;
+        console.log(uid, pwd, pwd2);
+        //검증 : uid,pwd length가 4이상 pwd==pwd2 -> 전송
+        if (uid.length >= 4 && pwd.length>=4 && pwd==pwd2){
+        	formReg.method = ""
+        	formReg.submit();
+        }else {
+        	alert("uid와 패스워드는 길이가 4이상이여야 하고, 입력한 패스워드가 서로 일치해야합니다.");
+   			
+        }
+        }
+        	
+   </script>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <hr>
+    <form action="/jw/ch06/regMember" method="post" name="formReg">
+    ID: <input type="text" name="uid" placeholder="사용자 ID"><br><br>
+    PWD: <input type="password" name="pwd" placeholder="패스워드"><br><br>
+    PWD 확인: <input type="text" name="pwd2" placeholder="패스워드 확인"><br><br>
+    성명: <input type="text" name="uname" placeholder="이름"><br><br>
+    생년월일: <input type="name" name="birthDay" placeholder="생년월일"><br><br>
+    email: <input type="name" name="email" placeholder="email"><br><br>
+    성별: <input type="radio" name="gender" value="1">여자    
+    <input type="radio" name="gender" value="2">남자 <br><br>  
+    취미: <input type="checkbox" name="hoby" value="1">운동      
+        <input type="checkbox" name="hoby" value="2">독서
+        <input type="checkbox" name="hoby" value="3" checked>음악
+         <input type="checkbox" name="hoby" value="4" checked>코딩
+        <input type="checkbox" name="hoby" value="5" checked>게임<br><br>
+        <input type="submit" value="확인">
+    </form>
+</body>
+</html>
