@@ -7,9 +7,17 @@
     <title>Form Group</title>
 </head>
 <body style="margin: 40px;">
+    
     <form action="/jw/ch06/params" method="post">
         UID: <input type="text" name="uid" placeholder="사용자 ID"><br><br>
         PWD: <input type="password" name="pwd" placeholder="패스워드"><br><br>
+        Skill: <input type="checkbox" name="skill" value="Java">Java
+        <input type="checkbox" name="skill" value="JSP" checked>JSP
+        <input type="checkbox" name="skill" value="HTML">HTML
+        <input type="checkbox" name="skill" value="CSS">CSS<br><br>
+        Food: <input type="radio" name="food" value="1">탕수육      
+        <input type="radio" name="food" value="2">유린기
+        <input type="radio" name="food" value="3" checked>짜장면<br><br>
         <input type="submit" value="확인">
     </form>
 </body>
