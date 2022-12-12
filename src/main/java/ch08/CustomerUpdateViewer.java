@@ -1,4 +1,4 @@
-package ch07;
+package ch08;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,20 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CustomerUpdate
+ * Servlet implementation class CustomerUpdateViewer
  */
-@WebServlet("/ch07/updateCustomer")
-public class CustomerUpdate extends HttpServlet {
-	
+@WebServlet("/ch08/updateView")
+public class CustomerUpdateViewer extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 사용자 입력 받음
 		request.setCharacterEncoding("utf-8");
-		String uid = request.getParameter("uid");
-		// DB에서 필요한 정보 가져옴
-		CustomerDao dao = new CustomerDao();
-		Customer c = dao.getCustomer(uid);
+		Customer c = (Customer)request.getAttribute("customer");
 		
-		//Viewe 호출
 		response.setCharacterEncoding("utf-8");		// 굳이 안해도 인코딩 오류 발생하지 않음
 		response.setContentType("text/html; charset=utf-8");	// 반드시 세팅해주어야 함
 		PrintWriter out = response.getWriter();
@@ -41,7 +36,7 @@ public class CustomerUpdate extends HttpServlet {
 				+ "<body style=\"margin: 40px;\"> "
 				+ "    <h1>회원 수정</h1> "
 				+ "    <hr> "
-				+ "    <form action=\"/jw/ch07/updateCustomer\" method=\"post\"> ";
+				+ "    <form action=\"/jw/ch08/updateCustomer\" method=\"post\"> ";
 				data += " <input type=\"hidden\" name=\"uid\" value=\"" +c.getUid()+ "\">";
 				data+= "        <table> "
 				+ "            <tr> "
@@ -67,16 +62,8 @@ public class CustomerUpdate extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String uid = request.getParameter("uid");
-		String uname = request.getParameter("uname");
-		System.out.println(uid + ", "+ uname);
-		
-		Customer c = new Customer(uid, uname);
-		CustomerDao dao = new CustomerDao();
-		dao.updateCustomer(c);
-		
-		response.sendRedirect("/jw/ch07/customerList");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

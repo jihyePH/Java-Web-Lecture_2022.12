@@ -1,6 +1,7 @@
 package ch08;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,19 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SourceDispatch
+ * Servlet implementation class CustomerController
  */
-@WebServlet("/ch08/src4")
-public class SourceDispatch extends HttpServlet {
+@WebServlet("/ch08/customer")
+public class CustomerController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("/ch08/src4 doGet()");
-		request.setAttribute("addr", "서울시 강남구 도곡동");
-		RequestDispatcher rd = request.getRequestDispatcher("/ch08/dst4?msg=한글");
+		request.setCharacterEncoding("utf-8");
+		CustomerDao dao = new CustomerDao();
+		List<Customer> list = dao.getCustomers();
+		
+		request.setAttribute("customer", list);
+		RequestDispatcher rd = request.getRequestDispatcher("/ch08/customerList");
 		rd.forward(request, response);
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
