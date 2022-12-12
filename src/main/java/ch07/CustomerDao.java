@@ -1,7 +1,5 @@
 package ch07;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,7 +8,6 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -41,7 +38,6 @@ public class CustomerDao {
 			// Delete 대신 -> isDeleted 필드를 1로 변경
 			pStmt.executeUpdate();
 			pStmt.close();
-			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -49,18 +45,15 @@ public class CustomerDao {
 	
 	public void updateCustomer(Customer c) {
 		Connection conn = getConnection();
-		String sql = "UPDATE customer SET NAME=?, regDate=?, isDeleted=? WHERE uid=?;";
+		String sql = "UPDATE customer SET name=? WHERE uid=?;";
 		try {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, c.getUname());
-			pStmt.setString(2, c.getRegDate().toString());
-			pStmt.setInt(3, c.getIsDeleted());
-			pStmt.setString(4, c.getUid()); 	 // ? 순서대로 번호받음(1번부터)
+			pStmt.setString(2, c.getUid());
 			
 			//Update 실행
 			pStmt.executeUpdate();
 			pStmt.close();
-			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,7 +77,6 @@ public class CustomerDao {
 			}
 			rs.close();
 			pStmt.close();
-			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -110,7 +102,6 @@ public class CustomerDao {
 			}
 			rs.close();
 			stmt.close();
-			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -127,7 +118,6 @@ public class CustomerDao {
 			
 			pStmt.executeUpdate();
 			pStmt.close();
-			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,0 +1,7 @@
+routing,method,입력parameter, 다음행선지, 파일이름
+/jw/ch07/customer.List,GET,,,java/ch07/CustomerServlet.java
+/jw/ch07/registerCustomer.html,,,,web/ch07/registerCustomer.html
+/jw/ch07/registerCustomer,POST,"uid, uname",/jw/ch07/customer.List,java/ch07/CustomerInsert.java
+/jw/ch07/deleteCustomer,GET,uid,/jw/ch07/customer.List,java/ch07/CustomerDelete.java
+/jw/ch07/updateCustomer,GET,uid,/jw/ch07/updateCustomer POST,java/ch07/CustomerUpdate.java
+/jw/ch07/updateCustomer,POST,"uid, uname",/jw/ch07/customer.List,java/ch07/CustomerUpdate.java

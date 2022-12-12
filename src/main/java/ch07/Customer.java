@@ -9,7 +9,11 @@ public class Customer {
 	private int isDeleted;
 	
 	 Customer(){}
-	 Customer(String uid, String uname, LocalDate regDate, int isDeleted) {
+	 Customer(String uid, String uname) {
+		this.uid = uid;
+		this.uname = uname;
+	}
+	Customer(String uid, String uname, LocalDate regDate, int isDeleted) {
 		this.uid = uid;
 		this.uname = uname;
 		this.regDate = regDate;
