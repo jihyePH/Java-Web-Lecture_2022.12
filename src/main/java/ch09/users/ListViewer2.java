@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class ListViewer
  */
-@WebServlet("ch09/users/listView")
+@WebServlet("/ch09/users/listView")
 public class ListViewer2 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
@@ -37,18 +37,16 @@ public class ListViewer2 extends HttpServlet {
 				+ "</head>"
 				+ "<body style=\"margin: 40px;\">"
 				+ "    <h1>사용자 목록</h1>";
-				if (sessionUid != null) {
-					data += "    <button onclick=\\\"location.href='/jw/ch09/user/logout'\\\">로그아웃</button>";
-					data += "";
+		// 로그인 되어있으면 로그아웃버튼, 아니면 로그인 버튼 보여주기
+				if (sessionUid != null) {		//로그인 된 상태
+					data += "    <button onclick=\"location.href='/jw/ch09/user/logout'\">로그아웃</button>";
+					data += session.getAttribute("uname")+ "님 환영합니다.";
 				} else
-					data += "<button onclick=\\\"location.href='/jw/ch09/user/login.html'\\\">로그인</button>";
+					data += "<button onclick=\"location.href='/jw/ch09/user/login.html'\">로그인</button>";
 				data += "<hr>"
-				+"  <h1>사용자 목록 <button onclick=\\\"location.href='/jw/ch09/user/login.html'\\\">로그인</button>"
-				+ "    </h1>"
-				+ "    <table border=\"1\">"
-				+ "        <tr>"
-				+ "            <th>UID</th><th>PWD</th><th>NAME</th><th>EMAIL</th><th>REGDATE</th></tr>"
-				+ "          ";
+						+ " <table border=\"1\">"
+						+ " <tr><th>UID</th><th>PWD</th><th>NAME</th><th>EMAIL</th><th>등록일</th><th>액션</th></tr>";
+				
 		for (User u: list) {
 			data += "  <tr>";
 			data += "<td>" + u.getUid()+ "</td>";
@@ -57,15 +55,21 @@ public class ListViewer2 extends HttpServlet {
 			data += "<td>" + u.getEmail()+ "</td>";
 			data += "<td>" + u.getRegDate()+ "</td>";
 			data += "<td>";
-			data += "   <button onclick=\"location.href='/jw/ch09/user/update?uid='\">수정</button>\r\n";
+			
+			//본인만이 수정 권한 있음
+			if (sessionUid == null || ! sessionUid.equals(u.getUid()))
+				data += "<button disabled>수정</button>\r\n";
+			else
+				data +="<button onclick=\"location.href='/jw/ch09/user/update?uid=admin\" + u.getUid() +'\">수정</button>\r\n";
+			
 			// 관리자(admin)만이 삭제 권한 있음
-			if (sessionUid == null)
-				data += "  <button onclick=\"location.href='/jw/ch09/user/delete?uid='\" disabled>삭제</button>\r\n";
+			if (sessionUid == null || ! sessionUid.equals("admin"))
+				data += "  <button disabled>삭제</button>\r\n";
 			else 
 				if (sessionUid.equals("admin"))
-					data += "  <button onclick=\"location.href='/jw/ch09/user/delete?uid='\">삭제</button>\r\n";
+					data += "  <button onclick=\"location.href='/jw/ch09/user/delete?uid=admin\" + u.getUid() + '\">삭제</button>\r\n";
 			data += "</td>";
-			data += "  </tr>";
+			data += " </tr>";
 		}
 		data += "  </table>"
 				+ "    <br>"
