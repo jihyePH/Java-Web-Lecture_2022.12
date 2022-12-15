@@ -15,4 +15,14 @@
  <param-value>짬뽕 짜장면 탕수육</param-value>
 </context-param>
 
+<!-- <filter>
+	<filter-name>HangulEncoding</filter-name>
+	<filter-class>ch10.EncodingFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>HangulEncoding</filter-name>
+	<url-pattern>/ch10/*</url-pattern>
+</filter-mapping>
+ -->
+
 </web-app>
