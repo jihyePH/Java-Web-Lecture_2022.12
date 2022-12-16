@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한자리수 계산기 ver.2</title>
+    <title>계산기 ver.3</title>
     <style>
         button  {height: 50px; width: 50px; text-align: center; font-size: 20px;}
         .result {height: 50px; text-align: right; padding: 0px 5px;
@@ -14,9 +14,9 @@
     </style>
 </head>
 <body style="margin: 50px;">
-    <h1>계산기 Ver.2(한자리수 계산기)</h1>
+    <h1>계산기 Ver.3</h1>
     <hr>
-    <form action="/jw/ch12/calc/ver2" method="post">
+    <form action="/jw/ch12/calc/ver3" method="post">
         <table>
             <tr>
                 <!-- <td class="result" colspan="4"><%= request.getAttribute("eval") %></td> -->
