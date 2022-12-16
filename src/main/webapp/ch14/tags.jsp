@@ -17,7 +17,7 @@
 </head>
 <body style ="height: 2000px">
 <div class="container-fluid p-3 bg-primary text-white text-center">
-    <h1>JSPTL (JSP Standard Tag Library)</h1>
+    <h1>JSTL (JSP Standard Tag Library)</h1>
     <p>1. core</p> 
 </div>
 <div class="container mt-5">
